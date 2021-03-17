@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  nextcloud_db:
+    image: postgres:alpine
+    container_name: nextcloud_db
+    restart: always
+    volumes:
+      - ./volumes/db:/var/lib/postgresql/data
+    env_file:
+      - db.env
+
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud
+    restart: always
+    volumes:
+      - ./volumes/nextcloud:/var/www/html
+    environment:
+      - POSTGRES_HOST=nextcloud_db
+      - REDIS_HOST_PASSWORD=YOU_PASSWORD_REDIS
+    env_file:
+      - db.env
+    depends_on:
+      - nextcloud_db
+      - redis
+      - onlyoffice
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: unless-stopped
+    command: redis-server --requirepass YOU_PASSWORD_REDIS
+    volumes:
+      - ./volumes/redis:/data
+
+  onlyoffice:
+    container_name: onlyoffice
+    image: onlyoffice/documentserver:latest
+    restart: always
+    volumes:
+      - ./volumes/onlyoffice/data:/var/www/onlyoffice/Data:rw
+      - ./volumes/onlyoffice/logs:/var/log/onlyoffice
+
+networks:
+  default:
+    external:
+      name: nginxproxymanager_default
