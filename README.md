@@ -12,7 +12,11 @@ Organizei toda a configuração em pastas, cada uma contendo um **docker-compose
 - Pasta **Ngnix Proxy Manager** (contém o docker-compose contendo o Ngnix Proxy Manager)
 - Pasta **Agendamentos** (contém os arquivos do Systemd para manter o cron do nextcloud atualizado)
 
-*Pré-requesitos: `docker`, `docker-compose` e `git` instalados.*
+**Pré-requesitos:**
+
+`docker`, `docker-compose` e `git`
+
+Pelo menos dois domínios: um para o Nextcloud e um para o Onlyoffice. Opcionalmente pode ter mais um domínio para o Ngnix Prox Manager (Local aonde serão configurados todos os domínios vinculados ao docker, já com SSL (*Let's Encrypt*))
 
 
 
