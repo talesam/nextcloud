@@ -4,7 +4,6 @@
 Para quem deseja utilizar um servidor de arquivos privado e seguro de forma simples, rodando em conteiners.
 
 
-
 ### Configuração organizada e separada
 Organizei toda a configuração em pastas, cada uma contendo um **docker-compose.yml**, exceto a pasta **Agendamento** que contém os arquivos para agendar tarefaz do Nextcloud no **cron** do Nextcloud utilizando o Systemd.
 
@@ -21,8 +20,6 @@ Pelo menos dois domínios: um para o **Nextcloud** e um para o **Onlyoffice**. O
 *Caso não queira gastar com um domínio, pode contratar um gratuitaemnte aqui: https://www.freenom.com/
 
 
-
-
 #### Baixar os arquivos para sua máquina
 
 Comece clonando o repositório `nextcloud` com:  
@@ -31,14 +28,10 @@ Comece clonando o repositório `nextcloud` com:
 Todos os arquivos que precisa estará dentro do diretório `nextcloud`
 
 
-
-
 #### Liberando Firewall
 Caso esteja com firewall ativo, libere as portas 80 e 443. Se estiver usando o **ufw**, isso pode ser feito da seguinte maneira:
 
-`sudo ufw allow 80,443/tcp`
-
-
+`sudo ufw allow 80,81,443/tcp`
 
 
 #### Subindo os conteiners do Ngnix Proxy Manager
