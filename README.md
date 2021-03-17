@@ -12,7 +12,7 @@ Organizei toda a configuração em pastas, cada uma contendo um **docker-compose
 - Pasta **Ngnix Proxy Manager** (contém o docker-compose contendo o Ngnix Proxy Manager)
 - Pasta **Agendamentos** (contém os arquivos do Systemd para manter o cron do nextcloud atualizado)
 
---
+---
 #### Pré-requesitos:
 
 `docker`, `docker-compose` e `git`
