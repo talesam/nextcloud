@@ -2,6 +2,5 @@
 Description=Nextcloud cron.php job
 
 [Service]
-#User=tales
 ExecStart=docker exec -t -u www-data nextcloud php -f /var/www/html/cron.php
 KillMode=process
