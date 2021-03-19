@@ -35,5 +35,7 @@ Caso esteja com firewall ativo, libere as portas 80 e 443. Se estiver usando o *
 
 
 #### Subindo os conteiners do Ngnix Proxy Manager
-Acesse o diretório **Ngnix Proxy Manager** e edite o arquivo **docker-compose.yml**. Altere **YOU_PASSWORD** para a senha que desejar. Salve e saia do arquivo.
+Acesse o diretório **Ngnix Proxy Manager** e edite o arquivo **docker-compose.yml**. Altere **YOU_PASSWORD** para a senha que desejar. Salve, saia do arquivo e rode o seguinte comando para subir o Ngnix Proxy Manager:
+
+`docker-compose up -d`
 
