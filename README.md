@@ -17,7 +17,7 @@ Organizei toda a configuração em pastas, cada uma contendo um **docker-compose
 `docker`, `docker-compose` e `git`
 
 Pelo menos dois domínios: um para o **Nextcloud** e um para o **Onlyoffice**. Opcionalmente pode ter mais um domínio para o **Ngnix Proxy Manager** (Local aonde serão configurados todos os domínios vinculados ao docker, já com SSL (*Let's Encrypt*)).
-*Caso não queira gastar com um domínio, pode contratar um gratuitaemnte aqui: https://www.freenom.com/
+*Caso não queira gastar com um domínio, pode contratar um gratuitamente aqui: https://www.freenom.com/
 
 
 #### Baixar os arquivos para sua máquina
