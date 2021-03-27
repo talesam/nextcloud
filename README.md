@@ -23,7 +23,7 @@ Pelo menos dois domínios: um para o **Nextcloud** e um para o **Onlyoffice**. O
 #### Baixar os arquivos para sua máquina
 
 Comece clonando o repositório `nextcloud` com:  
-`git clone git@github.com:talesam/nextcloud.git nextcloud`  
+`git clone https://github.com/talesam/nextcloud.git`
 
 Todos os arquivos que precisa estará dentro do diretório `nextcloud`
 
