@@ -47,9 +47,9 @@ Por exemplo: <br />
 #### Na tela de login coloque os seguintes dados para acessar
 login: *admin@example.com* <br />
 Senha: *changeme*
-
+<br />
 ![Captura de tela de 2021-03-28 19-51-11](https://user-images.githubusercontent.com/981368/112770938-ad307a80-8fff-11eb-9eff-55e09b65b94b.png)
-
+<br />
 Após a tela de login, insira um email válido e defina uma senha.
 <br />
 <br />
@@ -60,9 +60,9 @@ Configure de acordo com a imagem abaixo, altere apenas o domínio para o seu. <b
 **Forward Hostname / IP:** ngnixproxymanager_app_1 <br />
 **Forward Port:** 81 <br />
 ![Captura de tela de 2021-03-28 20-14-18](https://user-images.githubusercontent.com/981368/112771453-642df580-9002-11eb-9c3a-2a42e5e3dce4.png)
-
-Na aba SSL deixe como na imagem a abaixo e clique em salvar.
+<br />
+Na aba SSL deixe como na imagem a abaixo e clique em salvar.<br />
 ![Captura de tela de 2021-03-28 20-20-11](https://user-images.githubusercontent.com/981368/112771618-14036300-9003-11eb-8ace-10e33f12d2d5.png)
-
+<br />
 Você deverá ter uma imagem semelhante a essa:
 ![Captura de tela de 2021-03-28 20-22-29](https://user-images.githubusercontent.com/981368/112771686-647ac080-9003-11eb-85f0-8547769d067c.png)
