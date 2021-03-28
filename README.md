@@ -70,6 +70,6 @@ Você deverá ter uma imagem semelhante a essa:
 <br />
 ### Configuração e execução do Nextcloud
 
-Acesse o diretório **Nextcloudr** e edite o arquivo **db.env**. Altere **YOU_PASSWORD_POSTGRES** para a senha que desejar e salve. Em seguida edite o arquivo **docker-compose.yml** e altere **YOU_PASSWORD_REDIS** para a senha que desejar e salve. Rode o seguinte comando para subir o Ngnix Proxy Manager:
+Acesse o diretório **Nextcloud** e edite o arquivo **db.env**. Altere **YOU_PASSWORD_POSTGRES** para a senha que desejar e salve. Em seguida edite o arquivo **docker-compose.yml** e altere **YOU_PASSWORD_REDIS** para a senha que desejar e salve. Rode o seguinte comando para subir o Ngnix Proxy Manager:
 
 `docker-compose up -d`
