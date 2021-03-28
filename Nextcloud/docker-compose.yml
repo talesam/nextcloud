@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.3'
 
 services:
   nextcloud_db:
@@ -45,4 +45,4 @@ services:
 networks:
   default:
     external:
-      name: nginxproxymanager_default
+      name: ngnixproxymanager_default
