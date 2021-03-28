@@ -66,3 +66,10 @@ Na aba SSL deixe como na imagem a abaixo e clique em salvar.<br />
 <br />
 Você deverá ter uma imagem semelhante a essa:
 ![Captura de tela de 2021-03-28 20-22-29](https://user-images.githubusercontent.com/981368/112771686-647ac080-9003-11eb-85f0-8547769d067c.png)
+<br />
+<br />
+### Configuração e execução do Nextcloud
+
+Acesse o diretório **Nextcloudr** e edite o arquivo **db.env**. Altere **YOU_PASSWORD_POSTGRES** para a senha que desejar e salve. Em seguida edite o arquivo **docker-compose.yml** e altere **YOU_PASSWORD_REDIS** para a senha que desejar e salve. Rode o seguinte comando para subir o Ngnix Proxy Manager:
+
+`docker-compose up -d`
