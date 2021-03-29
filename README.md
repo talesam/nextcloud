@@ -79,6 +79,44 @@ Você deverá ter uma imagem semelhante a essa:
 <br />
 ### Configuração e execução do Nextcloud
 
-Acesse o diretório **Nextcloud** e edite o arquivo **db.env**. Altere **YOU_PASSWORD_POSTGRES** para a senha que desejar e salve. Em seguida edite o arquivo **docker-compose.yml** e altere **YOU_PASSWORD_REDIS** para a senha que desejar e salve. Rode o seguinte comando para subir o Ngnix Proxy Manager:
+Acesse o diretório **Nextcloud** e edite o arquivo **db.env**. Altere **YOU_PASSWORD_POSTGRES** para a senha que desejar e salve. Em seguida edite o arquivo **docker-compose.yml** e altere **YOU_PASSWORD_REDIS** para a senha que desejar e salve. Rode o seguinte comando para subir os conteiners do Nextcloud, Ngnix, Redis e OnlyOffice:
 
 `docker-compose up -d`
+
+#### Confiruração de domínio do NextCloud no NPM
+
+Acesse **Hosts** -> **Proxy Hosts** -> **Add Proxy Host** para adicionar um novo domínio.
+
+| Aba Details | Configuração |
+| --- | --- |
+| Domain Names | seu_dominio.com |
+| Scheme | http |
+| Forward Hostname / IP | nextcloud |
+| Forward Port | 80 |
+* Ative as outras 3 opções como na imagema abaixo:
+![Captura de tela de 2021-03-29 00-25-01](https://user-images.githubusercontent.com/981368/112783225-3c9c5480-9025-11eb-81ea-2aa1c9d52caa.png)
+<br />
+
+Na aba **SSL**, deixe como na imagem abaixo ou ative mais alguma opção se preferir:<br />
+![Captura de tela de 2021-03-29 00-26-21](https://user-images.githubusercontent.com/981368/112783351-86853a80-9025-11eb-9e5b-150e6f88d2eb.png)
+
+Na aba **Advanced** insira o seguinte conteúdo e salve:
+```
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_max_temp_file_size 16384m;
+client_max_body_size 0;
+
+location = /.well-known/carddav {
+      return 301 $scheme://$host:$server_port/remote.php/dav;
+    }
+    location = /.well-known/caldav {
+      return 301 $scheme://$host:$server_port/remote.php/dav;
+    }
+```
+
+
+
+
