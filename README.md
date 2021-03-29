@@ -145,8 +145,8 @@ Acrescente o seguinte conteúdo:
 'default_locale' => 'pt_BR',
 ```
 <br />
-#### Derrube e levante os conteiners para ativar as novas configurações:
 
+#### Derrube e levante os conteiners para ativar as novas configurações:
 ```
 docker-compose down
 docker-compose up -d
