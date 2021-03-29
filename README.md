@@ -101,6 +101,8 @@ Ative as outras 3 opções como na imagema abaixo:<br />
 
 Na aba **SSL**, deixe como na imagem abaixo ou ative mais alguma opção se preferir:<br />
 ![Captura de tela de 2021-03-29 00-26-21](https://user-images.githubusercontent.com/981368/112783351-86853a80-9025-11eb-9e5b-150e6f88d2eb.png)
+<br />
+ - Após finalizar, verifique se as opções de **SSL** estão ativas, senão ative-as.
 
 Na aba **Advanced** insira o seguinte conteúdo e salve:
 ```
@@ -119,6 +121,27 @@ location = /.well-known/carddav {
     }
 ```
 
+#### Instalação e configuração do sistema NextCloud
 
+Acesse o domínio configurado, defina um nome de usuário e senha, e finalize a configuração inicial.
 
+Edite o arquivo config.php do NextCloud para acrescentar algumas opções no final. Aqui irão entrar algumas correções, melhorias e ativação do Redis. <br />
+`nano volumes/nextcloud/config/config.php`
+
+Acrescente o seguinte conteúdo:
+```
+'redis' =>
+   array (
+     'host' => 'redis',
+     'port' => 6379,
+     'password' => 'YOU_PASSWORD_REDIS',
+),
+
+'default_phone_region' => 'BR',
+'trashbin_retention_obligation' => '30, 60',
+ 'overwriteprotocol' => 'https',
+ 'maintenance' => false,
+ 'default_language' => 'pt_BR',
+ 'default_locale' => 'pt_BR',
+```
 
