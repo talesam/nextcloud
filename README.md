@@ -93,7 +93,8 @@ Acesse **Hosts** -> **Proxy Hosts** -> **Add Proxy Host** para adicionar um novo
 | Scheme | http |
 | Forward Hostname / IP | nextcloud |
 | Forward Port | 80 |
-* Ative as outras 3 opções como na imagema abaixo:
+<br />
+* Ative as outras 3 opções como na imagema abaixo:<br />
 ![Captura de tela de 2021-03-29 00-25-01](https://user-images.githubusercontent.com/981368/112783225-3c9c5480-9025-11eb-81ea-2aa1c9d52caa.png)
 <br />
 
