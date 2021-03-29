@@ -40,9 +40,12 @@ Acesse o diretório **Ngnix Proxy Manager** e edite o arquivo **docker-compose.y
 `docker-compose up -d`
 
 #### Abra o seu navegador para acessar o Ngnix Proxy Manager
-_IP_HOST_:**81** <br />
+| Acessando o NPM |
+| --------------- |
+| IP_HOST:**81**  |
+
 Por exemplo: <br />
-121.225.31.48:81 
+**121.225.31.48:81**
 
 #### Na tela de login coloque os seguintes dados para acessar
 login: *admin@example.com* <br />
@@ -57,13 +60,19 @@ Após a tela de login, insira um email válido e defina uma senha.
 **Não vou explicar aqui como configurar um domínio, caso não saiba como fazer, pesquise na web.**
 <br />
 Configure de acordo com a imagem abaixo, altere apenas o domínio para o seu. <br />
-**Forward Hostname / IP:** ngnixproxymanager_app_1 <br />
-**Forward Port:** 81 <br />
+| Domínio para NPM                                   |
+| -------------------------------------------------- |
+| **Forward Hostname / IP:** ngnixproxymanager_app_1 |
+| **Forward Port:** 81                               |
+<br />
+
 ![Captura de tela de 2021-03-28 20-14-18](https://user-images.githubusercontent.com/981368/112771453-642df580-9002-11eb-9c3a-2a42e5e3dce4.png)
 <br />
+
 Na aba SSL deixe como na imagem a abaixo e clique em salvar.<br />
 ![Captura de tela de 2021-03-28 20-20-11](https://user-images.githubusercontent.com/981368/112771618-14036300-9003-11eb-8ace-10e33f12d2d5.png)
 <br />
+
 Você deverá ter uma imagem semelhante a essa:
 ![Captura de tela de 2021-03-28 20-22-29](https://user-images.githubusercontent.com/981368/112771686-647ac080-9003-11eb-85f0-8547769d067c.png)
 <br />
