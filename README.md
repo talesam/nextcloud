@@ -139,9 +139,17 @@ Acrescente o seguinte conteúdo:
 
 'default_phone_region' => 'BR',
 'trashbin_retention_obligation' => '30, 60',
- 'overwriteprotocol' => 'https',
- 'maintenance' => false,
- 'default_language' => 'pt_BR',
- 'default_locale' => 'pt_BR',
+'overwriteprotocol' => 'https',
+'maintenance' => false,
+'default_language' => 'pt_BR',
+'default_locale' => 'pt_BR',
 ```
+<br />
+#### Derrube e levante os conteiners para ativar as novas configurações:
+
+```
+docker-compose down
+docker-compose up -d
+```
+
 
