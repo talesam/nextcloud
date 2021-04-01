@@ -152,4 +152,6 @@ docker-compose down
 docker-compose up -d
 ```
 
-
+#### Verificação do NextCloud (imagemagick)
+Após fazer a verificação será exibido um aviso sobre o **imagemagick**, caso queira obter mais informações sobre essa mensagem, acesse o seguinte link: https://github.com/nextcloud/docker/issues/1414#
+- Basicamente essa mensagem pode ser ignorada, não irá fazer diferença alguma no funcionamento do NextCloud.
