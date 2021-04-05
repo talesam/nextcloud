@@ -1,5 +1,5 @@
 # Docker - Nextcloud
-## Executando Nextcloud em docker com perfeição + Ngnix Proxy Manager + Redis + Postgres + Onlyoffice
+## Executando Nextcloud em docker com perfeição + Nginx Proxy Manager + Redis + Postgres + Onlyoffice
 
 Para quem deseja utilizar um servidor de arquivos privado e seguro de forma simples, rodando em conteiners.
 <br />
@@ -8,7 +8,7 @@ Para quem deseja utilizar um servidor de arquivos privado e seguro de forma simp
 Organizei toda a configuração em pastas, cada uma contendo um **docker-compose.yml**, exceto a pasta **Agendamento** que contém os arquivos para agendar tarefaz do Nextcloud no **cron** do Nextcloud utilizando o Systemd.
 
 - Pasta **Nextcloud** (Contém o docker-compose.yml contendo os conteines: Nextcloud, Postgres, Redis e Onlyofice)
-- Pasta **Ngnix Proxy Manager** (contém o docker-compose contendo o Ngnix Proxy Manager)
+- Pasta **Nginx Proxy Manager** (contém o docker-compose contendo o Ngnix Proxy Manager)
 - Pasta **Agendamentos** (contém os arquivos do Systemd para manter o cron do nextcloud atualizado)
 
 ---
@@ -16,7 +16,7 @@ Organizei toda a configuração em pastas, cada uma contendo um **docker-compose
 
 `docker`, `docker-compose` e `git`
 
-Pelo menos dois domínios: um para o **Nextcloud** e um para o **Onlyoffice**. Opcionalmente pode ter mais um domínio para o **Ngnix Proxy Manager** (Local aonde serão configurados todos os domínios vinculados ao docker, já com SSL (*Let's Encrypt*)).
+Pelo menos dois domínios: um para o **Nextcloud** e um para o **Onlyoffice**. Opcionalmente pode ter mais um domínio para o **Nginx Proxy Manager** (Local aonde serão configurados todos os domínios vinculados ao docker, já com SSL (*Let's Encrypt*)).
 *Caso não queira gastar com um domínio, pode contratar um gratuitamente aqui: https://www.freenom.com/*
 <br />
 <br />
@@ -34,12 +34,12 @@ Caso esteja com firewall ativo, libere as portas 80 e 443. Se estiver usando o *
 `sudo ufw allow 80,81,443/tcp`
 <br />
 <br />
-### Configuração e execução do Ngnix Proxy Manager
-Acesse o diretório **Ngnix Proxy Manager** e edite o arquivo **docker-compose.yml**. Altere **YOU_PASSWORD** para a senha que desejar e salve. Rode o seguinte comando para subir o Ngnix Proxy Manager:
+### Configuração e execução do Nginx Proxy Manager
+Acesse o diretório **Nginx Proxy Manager** e edite o arquivo **docker-compose.yml**. Altere **YOU_PASSWORD** para a senha que desejar e salve. Rode o seguinte comando para subir o Nginx Proxy Manager:
 
 `docker-compose up -d`
 
-#### Abra o seu navegador para acessar o Ngnix Proxy Manager
+#### Abra o seu navegador para acessar o Nginx Proxy Manager
 | Acessando o NPM |
 | --------------- |
 | IP_HOST:**81**  |
