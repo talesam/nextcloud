@@ -155,3 +155,30 @@ docker-compose up -d
 #### Verificação do NextCloud (imagemagick)
 Após fazer a verificação será exibido um aviso sobre o **imagemagick**, caso queira obter mais informações sobre essa mensagem, acesse o seguinte link: https://github.com/nextcloud/docker/issues/1414#
 - Basicamente essa mensagem pode ser ignorada, não irá fazer diferença alguma no funcionamento do NextCloud.
+
+
+### Configuração do Onlyoffice
+
+Primeiro começe configurando um domínio para o Onlyoffice no NPM. As configurações são semelhantes a do NPM, altere apenas os campos abaixo, o demais deixe igual ao NPM nas imagens acima.
+<br />
+| Domínio para Onlyoffice                            |
+| -------------------------------------------------- |
+| **Forward Hostname / IP:** onlyoffice              |
+| **Forward Port:** 80                               |
+<br />
+
+#### Configurando Onlyoffice no NextCloud
+<br />
+Acesse o seu NextCloud como **admin**, vá em Configurações e em seguida em ONLYOFFICE.
+
+| Configuração do OnlyOffice                                                                                                  |
+| --------------------------------------------------------------------------------------------------------------------------- |
+| Endereço do Serviço de Edição de Documentos: **Domínio do OnlyOffice Configurado no NPM**                                   |
+| Endereço do Serviço de Edição de Documentos para pedidos internos do servidor: **Domínio do OnlyOffice Configurado no NPM** |
+| Endereço do servidor para pedidos internos do Serviço de Edição de Documentos: **Domínio do NextCloud configurado no NPM**  |
+
+<br />
+#### Configurações de documentos do OnlyOffice
+<br />
+Segue algumas configurações pessoais de como o OnlyOffice irá se comportar e quais arquivos terá suporte:
+![Captura de tela de 2021-04-05 18-29-57](https://user-images.githubusercontent.com/981368/113629619-0f5f3000-963d-11eb-8242-39be3c5b6bb1.png)
