@@ -203,4 +203,5 @@ Comece copiando os arquivos `nextcloudcron.service` `nextcloudcron.timer` que es
 (Verificar o status do serviço)<br />
 `systemctl status nextcloudcron.service`
 <br />
+<br />
 No arquivo `nextcloudcron.timer` a variável (OnUnitActiveSec=**3min**) está setada para atualizar o cron no NextCloud a cada 3 minutos, o valor padrão é 5 minutos. Altere para o valor que desejar.
