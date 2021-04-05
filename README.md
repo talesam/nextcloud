@@ -165,10 +165,9 @@ Primeiro começe configurando um domínio para o Onlyoffice no NPM. As configura
 | -------------------------------------------------- |
 | **Forward Hostname / IP:** onlyoffice              |
 | **Forward Port:** 80                               |
-<br />
 
 #### Configurando Onlyoffice no NextCloud
-<br />
+
 Acesse o seu NextCloud como **admin**, vá em Configurações e em seguida em ONLYOFFICE.
 
 | Configuração do OnlyOffice                                                                                                  |
@@ -177,8 +176,8 @@ Acesse o seu NextCloud como **admin**, vá em Configurações e em seguida em ON
 | Endereço do Serviço de Edição de Documentos para pedidos internos do servidor: **Domínio do OnlyOffice Configurado no NPM** |
 | Endereço do servidor para pedidos internos do Serviço de Edição de Documentos: **Domínio do NextCloud configurado no NPM**  |
 
-<br />
 #### Configurações de documentos do OnlyOffice
 <br />
 Segue algumas configurações pessoais de como o OnlyOffice irá se comportar e quais arquivos terá suporte:
+
 ![Captura de tela de 2021-04-05 18-29-57](https://user-images.githubusercontent.com/981368/113629619-0f5f3000-963d-11eb-8242-39be3c5b6bb1.png)
