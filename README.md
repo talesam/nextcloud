@@ -195,13 +195,13 @@ Cheguei a testar diretamente no cron e não fica tão bom quanto fazer no System
 Comece copiando os arquivos `nextcloudcron.service` `nextcloudcron.timer` que estão dentro do diretório **Agendamento** para `/etc/systemd/system/` e então execute:
 <br /><br />
 (Ativar o serviço no boot do sistema)<br />
-`systemctl enable nextcloudcron.service`
+`systemctl enable nextcloudcron`
 
 (Iniciar o serviço já!)<br />
-`systemctl start nextcloudcron.service`
+`systemctl start nextcloudcron`
 
 (Verificar o status do serviço)<br />
-`systemctl status nextcloudcron.service`
+`systemctl status nextcloudcron`
 <br />
 <br />
 No arquivo `nextcloudcron.timer` a variável (OnUnitActiveSec=**3min**) está setada para atualizar o cron no NextCloud a cada 3 minutos, o valor padrão é 5 minutos. Altere para o valor que desejar.
