@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.9'
 
 services:
   nextcloud_db:
@@ -38,6 +38,8 @@ services:
     container_name: onlyoffice
     image: onlyoffice/documentserver:latest
     restart: always
+    environment:
+      - JWT_ENABLED=false
     volumes:
       - ./volumes/onlyoffice/data:/var/www/onlyoffice/Data:rw
       - ./volumes/onlyoffice/logs:/var/log/onlyoffice
