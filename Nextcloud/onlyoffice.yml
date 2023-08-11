@@ -1,0 +1,26 @@
+version: '3.9'
+
+services: 
+    onlyoffice:
+        container_name: onlyoffice
+        image: onlyoffice/documentserver:latest
+        restart: always
+        environment:
+            - JWT_ENABLED=false
+        volumes:
+            - ${HOME}/Docker/Nextcloud/Onlyoffice/data:/var/www/onlyoffice/Data:rw
+            - ${HOME}/Docker/Nextcloud/Onlyoffice/logs:/var/log/onlyoffice
+        expose:
+            - 80
+        networks:
+            - onlyoffice-net
+            - nextcloud-net
+            - npm-net
+
+networks:
+  onlyoffice-net:
+    name: onlyoffice-net
+  nextcloud-net:
+    external: true
+  npm-net:
+    external: true

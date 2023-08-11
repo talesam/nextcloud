@@ -41,7 +41,6 @@ services:
         depends_on:
             - nextcloud_db
             - redis
-            - onlyoffice
         deploy:
             resources:
                 limits:
@@ -71,18 +70,6 @@ services:
         networks:
             - nextcloud-net
 
-    onlyoffice:
-        container_name: onlyoffice
-        image: onlyoffice/documentserver:latest
-        restart: always
-        environment:
-            - JWT_ENABLED=false
-        volumes:
-            - ${HOME}/Docker/Nextcloud/Onlyoffice/data:/var/www/onlyoffice/Data:rw
-            - ${HOME}/Docker/Nextcloud/Onlyoffice/logs:/var/log/onlyoffice
-        networks:
-            - nextcloud-net
-            
 networks:
     nextcloud-net:
         name: nextcloud-net

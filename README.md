@@ -7,7 +7,7 @@ Para quem deseja utilizar um servidor de arquivos privado e seguro de forma simp
 ### Configuração organizada e separada
 Organizei toda a configuração em pastas, cada uma contendo um **docker-compose.yml**, exceto a pasta **Agendamento** que contém os arquivos para agendar tarefaz do Nextcloud no **cron** utilizando o Systemd.
 
-- Pasta **Nextcloud** (Contém o docker-compose.yml contendo os conteines: Nextcloud, Postgres, Redis e Onlyofice)
+- Pasta **Nextcloud** (Contém o docker-compose.yml contendo os conteines: Nextcloud, Postgres e Redis, e o onlyofice.yml contendo o conteiner do Onlyofice)
 - Pasta **Nginx Proxy Manager** (contém o docker-compose contendo o Ngnix Proxy Manager)
 - Pasta **Agendamentos** (contém os arquivos do _Systemd_ para manter o cron do Nextcloud atualizado)
 
@@ -81,7 +81,7 @@ Você deverá ter uma imagem semelhante a essa:
 
 Acesse o diretório **Nextcloud** e edite o arquivo **db.env**. Altere **YOU_PASSWORD_POSTGRES** para a senha que desejar e salve. Em seguida edite o arquivo **docker-compose.yml** e altere **YOU_PASSWORD_REDIS** para a senha que desejar e salve. Rode o seguinte comando para subir os conteiners do Nextcloud, Ngnix, Redis e OnlyOffice:
 
-`docker-compose up -d`
+`docker-compose -f docker-compose.yml -f onlyofice.yml up -d`
 
 #### Confiruração de domínio do NextCloud no NPM
 
