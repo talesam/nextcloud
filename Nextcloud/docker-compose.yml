@@ -1,50 +1,90 @@
 version: '3.9'
 
 services:
-  nextcloud_db:
-    image: postgres:alpine
-    container_name: nextcloud_db
-    restart: always
-    volumes:
-      - ./volumes/db:/var/lib/postgresql/data
-    env_file:
-      - db.env
+    nextcloud_db:
+        image: postgres:alpine
+        container_name: nextcloud_db
+        restart: always
+        volumes:
+            - ${HOME}/Docker/Nextcloud/db:/var/lib/postgresql/data
+        env_file:
+            - db.env
+        deploy:
+            resources:
+                limits:
+                    cpus: '2'
+                    memory: 4G
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://127.0.0.1:5432"]
+            interval: 30s
+            timeout: 10s
+            retries: 6
+        networks:
+            - nextcloud-net
 
-  nextcloud:
-    image: nextcloud:latest
-    container_name: nextcloud
-    restart: always
-    volumes:
-      - ./volumes/nextcloud:/var/www/html
-    environment:
-      - POSTGRES_HOST=nextcloud_db
-      - REDIS_HOST_PASSWORD=YOU_PASSWORD_REDIS
-    env_file:
-      - db.env
-    depends_on:
-      - nextcloud_db
-      - redis
-      - onlyoffice
+    nextcloud:
+        image: nextcloud:stable
+        container_name: nextcloud
+        restart: always
+        volumes:
+            - ${HOME}/Docker/Nextcloud/html:/var/www/html
+        environment:
+            #- NEXTCLOUD_ADMIN_USER=admin # Activate before installing to already install with a standard user
+            #- NEXTCLOUD_ADMIN_PASSWORD=PASSWORD_ADMIN # Activate before installing to already install with a default password
+            - POSTGRES_HOST=nextcloud_db
+            - REDIS_HOST=redis
+            - REDIS_HOST_PORT=6379
+            - REDIS_HOST_PASSWORD=YOU_PASSWORD_REDIS
+        env_file:
+            - db.env
+        
+        depends_on:
+            - nextcloud_db
+            - redis
+            - onlyoffice
+        deploy:
+            resources:
+                limits:
+                    cpus: '3'
+                    memory: 7G
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://127.0.0.1:80"]
+            interval: 30s
+            timeout: 10s
+            retries: 6
+        networks:
+            - nextcloud-net
+            - npm-net
 
-  redis:
-    image: redis:alpine
-    container_name: redis
-    restart: unless-stopped
-    command: redis-server --requirepass YOU_PASSWORD_REDIS
-    volumes:
-      - ./volumes/redis:/data
+    redis:
+        image: redis:alpine
+        container_name: redis
+        restart: unless-stopped
+        command: redis-server --requirepass YOU_PASSWORD_REDIS --appendonly yes
+        volumes:
+            - ${HOME}/Docker/Nextcloud/redis:/data
+        deploy:
+            resources:
+                limits:
+                    cpus: '1'
+                    memory: 2G
+        networks:
+            - nextcloud-net
 
-  onlyoffice:
-    container_name: onlyoffice
-    image: onlyoffice/documentserver:latest
-    restart: always
-    environment:
-      - JWT_ENABLED=false
-    volumes:
-      - ./volumes/onlyoffice/data:/var/www/onlyoffice/Data:rw
-      - ./volumes/onlyoffice/logs:/var/log/onlyoffice
-
+    onlyoffice:
+        container_name: onlyoffice
+        image: onlyoffice/documentserver:latest
+        restart: always
+        environment:
+            - JWT_ENABLED=false
+        volumes:
+            - ${HOME}/Docker/Nextcloud/Onlyoffice/data:/var/www/onlyoffice/Data:rw
+            - ${HOME}/Docker/Nextcloud/Onlyoffice/logs:/var/log/onlyoffice
+        networks:
+            - nextcloud-net
+            
 networks:
-  default:
-    external:
-      name: ngnixproxymanager_default
+    nextcloud-net:
+        name: nextcloud-net
+    npm-net:
+        external: true

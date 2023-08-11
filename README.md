@@ -1,15 +1,15 @@
 # Docker - Nextcloud
-## Executando Nextcloud em docker com perfeição + Nginx Proxy Manager + Redis + Postgres + Onlyoffice
+## Executando Nextcloud em docker + Nginx Proxy Manager + Redis + Postgres + Onlyoffice
 
 Para quem deseja utilizar um servidor de arquivos privado e seguro de forma simples, rodando em conteiners.
 <br />
 
 ### Configuração organizada e separada
-Organizei toda a configuração em pastas, cada uma contendo um **docker-compose.yml**, exceto a pasta **Agendamento** que contém os arquivos para agendar tarefaz do Nextcloud no **cron** do Nextcloud utilizando o Systemd.
+Organizei toda a configuração em pastas, cada uma contendo um **docker-compose.yml**, exceto a pasta **Agendamento** que contém os arquivos para agendar tarefaz do Nextcloud no **cron** utilizando o Systemd.
 
 - Pasta **Nextcloud** (Contém o docker-compose.yml contendo os conteines: Nextcloud, Postgres, Redis e Onlyofice)
 - Pasta **Nginx Proxy Manager** (contém o docker-compose contendo o Ngnix Proxy Manager)
-- Pasta **Agendamentos** (contém os arquivos do Systemd para manter o cron do nextcloud atualizado)
+- Pasta **Agendamentos** (contém os arquivos do _Systemd_ para manter o cron do Nextcloud atualizado)
 
 ---
 #### Pré-requesitos:
@@ -29,13 +29,13 @@ Todos os arquivos que precisa estará dentro do diretório `nextcloud`
 <br />
 <br />
 #### Liberando Firewall
-Caso esteja com firewall ativo, libere as portas 80 e 443. Se estiver usando o **ufw**, isso pode ser feito da seguinte maneira:
+Caso esteja com firewall ativo, libere as portas 80, 81 e 443. Se estiver usando o **ufw**, isso pode ser feito da seguinte maneira:
 
 `sudo ufw allow 80,81,443/tcp`
 <br />
 <br />
 ### Configuração e execução do Nginx Proxy Manager
-Acesse o diretório **Nginx Proxy Manager** e edite o arquivo **docker-compose.yml**. Altere **YOU_PASSWORD** para a senha que desejar e salve. Rode o seguinte comando para subir o Nginx Proxy Manager:
+Acesse o diretório **Nginx Proxy Manager** e execute o seguinte comando para subir o Nginx Proxy Manager:
 
 `docker-compose up -d`
 
@@ -53,17 +53,17 @@ Senha: *changeme*
 <br />
 ![Captura de tela de 2021-03-28 19-51-11](https://user-images.githubusercontent.com/981368/112770938-ad307a80-8fff-11eb-9eff-55e09b65b94b.png)
 <br />
-Após a tela de login, insira um email válido e defina uma senha.
+Após a tela de login, insira um email válido e defina uma senha para o seu usuário.
 <br />
 <br />
 *OPCIONAL* - Definindo um domínio para o npm (Ngnix Proxy manager)<br />
 **Não vou explicar aqui como configurar um domínio, caso não saiba como fazer, pesquise na web.**
 <br />
 Configure de acordo com a imagem abaixo, altere apenas o domínio para o seu. <br />
-| Domínio para NPM                                   |
-| -------------------------------------------------- |
-| **Forward Hostname / IP:** ngnixproxymanager_app_1 |
-| **Forward Port:** 81                               |
+| Domínio para NPM                     |
+| ------------------------------------ |
+| **Forward Hostname / IP:** npm-proxy |
+| **Forward Port:** 81                 |
 <br />
 
 ![Captura de tela de 2021-03-28 20-14-18](https://user-images.githubusercontent.com/981368/112771453-642df580-9002-11eb-9c3a-2a42e5e3dce4.png)
@@ -87,12 +87,12 @@ Acesse o diretório **Nextcloud** e edite o arquivo **db.env**. Altere **YOU_PAS
 
 Acesse **Hosts** -> **Proxy Hosts** -> **Add Proxy Host** para adicionar um novo domínio.
 
-| Aba Details | Configuração |
-| --- | --- |
-| Domain Names | seu_dominio.com |
-| Scheme | http |
-| Forward Hostname / IP | nextcloud |
-| Forward Port | 80 |
+| Aba Details           | Configuração    |
+| --------------------- | --------------- |
+| Domain Names          | seu_dominio.com |
+| Scheme | http         |
+| Forward Hostname / IP | nextcloud       |
+| Forward Port          | 80              |
 <br />
 
 Ative as outras 3 opções como na imagema abaixo:<br />
@@ -125,36 +125,27 @@ location = /.well-known/carddav {
 
 Acesse o domínio configurado, defina um nome de usuário e senha, e finalize a configuração inicial.
 
-Edite o arquivo config.php do NextCloud para acrescentar algumas opções no final. Aqui irão entrar algumas correções, melhorias e ativação do Redis. <br />
+Edite o arquivo config.php do NextCloud para acrescentar algumas opções no final. Aqui irão entrar algumas correções, melhorias. <br />
 `nano volumes/nextcloud/config/config.php`
 
 Acrescente o seguinte conteúdo:
 ```
-'redis' =>
-   array (
-     'host' => 'redis',
-     'port' => 6379,
-     'password' => 'YOU_PASSWORD_REDIS',
-),
-
-'default_phone_region' => 'BR',
 'trashbin_retention_obligation' => '30, 60',
 'overwriteprotocol' => 'https',
 'maintenance' => false,
-'default_language' => 'pt_BR',
-'default_locale' => 'pt_BR',
 ```
 <br />
 
 #### Derrube e levante os conteiners para ativar as novas configurações:
 ```
-docker-compose down
-docker-compose up -d
+docker-compose down && docker-compose up -d
 ```
 
+~~~
 #### Verificação do NextCloud (imagemagick)
 Após fazer a verificação será exibido um aviso sobre o **imagemagick**, caso queira obter mais informações sobre essa mensagem, acesse o seguinte link: https://github.com/nextcloud/docker/issues/1414#
 - Basicamente essa mensagem pode ser ignorada, não irá fazer diferença alguma no funcionamento do NextCloud.
+~~~
 
 <br />
 
@@ -192,7 +183,7 @@ Segue algumas configurações pessoais de como o OnlyOffice irá se comportar e 
 ### Agendamento do cron no Nexcloud por Systemd
 
 Cheguei a testar diretamente no cron e não fica tão bom quanto fazer no Systemd, o qual possui mais recursos e é muito mais leve.
-Comece copiando os arquivos `nextcloudcron.service` `nextcloudcron.timer` que estão dentro do diretório **Agendamento** para `/etc/systemd/system/` e então execute:
+Comece copiando os arquivos `nextcloudcron.service` e `nextcloudcron.timer` que estão dentro do diretório **Agendamento** para `/etc/systemd/system/` e então execute:
 <br /><br />
 (Ativar o serviço no boot do sistema)<br />
 `systemctl enable nextcloudcron.timer`

@@ -1,30 +1,20 @@
-version: '3'
+version: '3.8'
 
 services:
-  app:
+  npm-proxy:
     image: 'jc21/nginx-proxy-manager:latest'
+    container_name: npm-proxy
     ports:
       - '80:80'
       - '81:81'
       - '443:443'
-    environment:
-      DB_MYSQL_HOST: "db"
-      DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: "npm"
-      DB_MYSQL_PASSWORD: "YOU_PASSWORD"
-      DB_MYSQL_NAME: "npm"
     volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
-    restart: always
+      - ${HOME}/Docker/NPM/data:/data
+      - ${HOME}/Docker/NPM/letsencrypt:/etc/letsencrypt
+    restart: unless-stopped
+    networks:
+      - npm-net
 
-  db:
-    image: 'jc21/mariadb-aria:latest'
-    environment:
-      MYSQL_ROOT_PASSWORD: 'YOU_PASSWORD'
-      MYSQL_DATABASE: 'npm'
-      MYSQL_USER: 'npm'
-      MYSQL_PASSWORD: 'YOU_PASSWORD'
-    volumes:
-      - ./data/mysql:/var/lib/mysql
-    restart: always
+networks:
+  npm-net:
+    name: npm-net 
