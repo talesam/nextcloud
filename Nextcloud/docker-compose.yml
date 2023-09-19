@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
     nextcloud_db:
-        image: postgres:alpine
+        image: postgres:15.4-alpine
         container_name: nextcloud_db
         restart: always
         volumes:
