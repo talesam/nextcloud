@@ -128,7 +128,20 @@ Acesse o domínio configurado, defina um nome de usuário e senha, e finalize a 
 Edite o arquivo config.php do NextCloud para acrescentar algumas opções no final. Aqui irão entrar algumas correções, melhorias. <br />
 `nano volumes/nextcloud/config/config.php`
 
-Acrescente o seguinte conteúdo:
+Acrescente no início do arquivo o conteúdo do Redis:
+```
+'memcache.local' => '\\OC\\Memcache\\APCu',
+'filelocking.enabled' => true,
+'memcache.locking' => '\OC\Memcache\Redis',
+'redis' => 
+array (
+  'host' => 'redis',
+  'port' => 6379,
+  'timeout' => 0.0,
+  'password' => 'SENHA_DO_REDIS',
+```
+
+Inclua no final do arquivo
 ```
 'trashbin_retention_obligation' => '30, 60',
 'overwriteprotocol' => 'https',
